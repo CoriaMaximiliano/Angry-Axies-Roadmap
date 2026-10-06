@@ -1,0 +1,29 @@
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.env
+
+# Fuente pesada solo para regenerar el hero GIF localmente (no subir a Git).
+public/hero-pantalla-inicial.ogv
+
+# ZIP del cliente para GitHub Release (no versionar el binario en git; subilo a la release a mano).
+public/TombOfDoom_client.zip

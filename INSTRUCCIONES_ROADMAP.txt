@@ -1,0 +1,49 @@
+================================================================================
+ROADMAP DE ANGRY AXIES — cómo editarlo y publicarlo
+================================================================================
+Basado en el método del roadmap de Tomb of Doom (React + Vite + Tailwind +
+lucide-react, GitHub Pages por GitHub Actions). Carpeta: roadmap-site/
+
+1) DÓNDE EDITAR
+- src/content.ts  -> TODO el contenido y el estado: fases (CHAPTERS), hitos con
+                    su estado, tiers, rasgos, tablas de cofres/ANG, recorrido
+                    de 7 pasos, versión y fecha (GAME_VERSION, UPDATED).
+- src/App.tsx     -> textos de la página (objeto UI, ES/EN) y el diseño.
+- index.html      -> título, meta y og:image. Para que la vista previa en redes
+                    funcione, og:image debe ser una URL ABSOLUTA tras elegir el
+                    repo, p.ej. https://<usuario>.github.io/<repo>/og-banner.png
+- public/img/     -> imágenes (arcos T1–T7, cajas, moneda ANG, hero).
+- vite.config.ts  -> base de producción. Debe coincidir con /<nombre-del-repo>/
+                    (hoy /Angry-Axies-Roadmap/). Se puede cambiar con la variable
+                    ROADMAP_BASE al compilar.
+
+2) REGLA DE ESTADO (no inflar el avance)
+El % de cada fase y el total se CALCULAN con el estado de los hitos
+(STATE_WEIGHT en content.ts). Estados: planned 0, design 10, building 35,
+testnet 65, live 85, done 100, blocked 0. Un hito solo sube con evidencia
+(docs/ESTADO-MAESTRO-ANGRY-AXIES.md del repo del juego): no por un test aislado.
+Para cambiar un avance, cambiar el estado del hito, nunca un número a mano.
+
+3) PROBAR Y COMPILAR
+  npm install          (primera vez)
+  npm run dev          -> http://localhost:5188 con el launch "roadmap-site"
+  npm run build        -> typecheck + dist/
+
+4) PUBLICAR (requiere decisión de Maxi: repo y URL pública)
+  1. Crear un repo en GitHub (p.ej. CoriaMaximiliano/Angry-Axies-Roadmap) con el
+     CONTENIDO de roadmap-site/ en la raíz y Pages = "GitHub Actions".
+  2. git push a main -> .github/workflows/deploy.yml compila y publica.
+  3. Verificar Actions en verde y abrir la URL (Ctrl+F5 si hay caché).
+  Si el repo se llama distinto, ajustar vite.config.ts (repoBase) y og:image.
+
+5) QUÉ NO PUBLICAR
+- Claves, tokens, contraseñas, códigos privados, ni direcciones internas de
+  wallets de tesorería/administración.
+- Direcciones de contratos de la red de pruebas descartable (se reemplazan).
+- Promesas de fechas o de rendimiento del token (AGENTS.md: no prometer tiempos).
+- No describir la blockchain como parte del cliente del juego: wallets, firmas,
+  mint y cobro viven en páginas externas / Discord.
+
+6) ACTUALIZAR TRAS CADA HITO
+Cambiar el estado del hito en content.ts, GAME_VERSION y UPDATED, compilar y
+publicar. Registrar el cambio en la bitácora del estado maestro del juego.
