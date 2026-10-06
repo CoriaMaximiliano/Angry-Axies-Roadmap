@@ -47,8 +47,8 @@ const UI = {
     en: 'Angry Axies roadmap: game, NFTs with hidden traits, chests, ANG token and match verification on Ronin.',
   },
   pill: { es: 'Roadmap vivo', en: 'Live roadmap' },
-  h1a: { es: 'Construí. Apuntá. Destruí.', en: 'Build. Aim. Destroy.' },
-  h1b: { es: 'Tus NFT, en Ronin.', en: 'Your NFTs, on Ronin.' },
+  h1a: { es: 'Construí. Apuntá.', en: 'Build. Aim.' },
+  h1b: { es: 'Destruí en la blockchain.', en: 'Destroy on the blockchain.' },
   heroP: {
     es: 'Angry Axies es un juego de honda y construcción con física real. Los NFT y el token ANG suman beneficios y premios, pero la blockchain nunca toca el juego: todo lo que firma tu wallet ocurre en páginas externas.',
     en: 'Angry Axies is a slingshot-and-building game with real physics. NFTs and the ANG token add benefits and rewards, but the blockchain never touches the game: everything your wallet signs happens on external pages.',
