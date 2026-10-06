@@ -153,7 +153,7 @@ const UI = {
   usesTitle: { es: 'Usos previstos de ANG', en: 'Planned uses of ANG' },
   uses: [
     { es: 'Mercado interno: intercambiar con otros jugadores por bienes transferibles.', en: 'In-game market: trade with other players for transferable goods.' },
-    { es: 'Subastas de NFT nuevos: gana la puja más alta y se devuelve íntegro lo no ganador.', en: 'New-NFT auctions: the highest bid wins and non-winning bids are fully refunded.' },
+    { es: 'Subastas de NFT nuevos: gana la puja más alta y se devuelve íntegro a los no ganadores.', en: 'New-NFT auctions: the highest bid wins and non-winners are fully refunded.' },
     { es: 'VIP: acceso a un torneo exclusivo con NFT para ganadores y ANG para participantes.', en: 'VIP: access to an exclusive tournament with NFTs for winners and ANG for participants.' },
   ],
   circuitTitle: { es: 'El recorrido completo', en: 'The full journey' },
