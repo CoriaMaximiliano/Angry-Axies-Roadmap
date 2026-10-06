@@ -64,7 +64,7 @@ export const CHAPTERS: Chapter[] = [
       { label: { es: 'Cofres, memes, chat y ranking', en: 'Chests, memes, chat and ranking' }, state: 'live' },
       { label: { es: 'Cuatro idiomas: ES, EN, JA, FIL', en: 'Four languages: ES, EN, JA, FIL' }, state: 'live' },
       { label: { es: 'Navegador (PC y móvil en horizontal)', en: 'Browser (PC and mobile, landscape)' }, state: 'live' },
-      { label: { es: 'Apps de Android e iPhone al día con la web', en: 'Android and iPhone apps up to date with the web' }, state: 'building', note: { es: 'Actualización por OTA; validación en iPhone y Android físicos pendiente.', en: 'Updated over the air; physical iPhone/Android validation pending.' } },
+      { label: { es: 'Apps de Android e iPhone', en: 'Android and iPhone apps' }, state: 'live' },
     ],
   },
   {

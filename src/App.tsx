@@ -173,7 +173,6 @@ const UI = {
     { es: 'Completar las pruebas de punta a punta.', en: 'Complete the end-to-end tests.' },
     { es: 'Aplicar por completo los atributos NFT en el servidor.', en: 'Fully apply NFT attributes on the server.' },
     { es: 'Cerrar el anti-abuso y validar recompensas en condiciones reales.', en: 'Close anti-abuse and validate rewards under real conditions.' },
-    { es: 'Completar las builds de Android e iPhone.', en: 'Complete the Android and iPhone builds.' },
     { es: 'Auditoría de contratos y lanzamiento de la colección.', en: 'Contract audit and collection launch.' },
   ],
   nextLater: { es: 'Después del lanzamiento', en: 'After launch' },
