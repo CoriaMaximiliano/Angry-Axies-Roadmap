@@ -43,10 +43,42 @@ const base = import.meta.env.BASE_URL;
 const UI = {
   docTitle: { es: 'Angry Axies — Roadmap y sistema NFT/ANG', en: 'Angry Axies — Roadmap and NFT/ANG system' },
   metaDesc: {
-    es: 'Roadmap de Angry Axies: juego, NFT con rasgos ocultos, cofres, token ANG y verificación de partidas en Ronin.',
-    en: 'Angry Axies roadmap: game, NFTs with hidden traits, chests, ANG token and match verification on Ronin.',
+    es: 'Hacer a Ronin grande otra vez. Roadmap de Angry Axies: juego, NFT, cofres, token ANG y verificación de partidas.',
+    en: 'Make Ronin great again. Angry Axies roadmap: game, NFTs, chests, ANG token and match verification.',
   },
   pill: { es: 'Roadmap vivo', en: 'Live roadmap' },
+  heroMission: {
+    es: 'Hacer a Ronin grande otra vez.',
+    en: 'Make Ronin great again.',
+  },
+  heroSub: {
+    es: 'Angry Axies nació para traer diversión a Ronin, una economía sana y nuevos jugadores, bajando la fricción al máximo.',
+    en: 'Angry Axies was born to bring fun to Ronin, a healthy economy and new players, cutting friction to the minimum.',
+  },
+  missionPill: { es: 'Nuestra misión', en: 'Our mission' },
+  missionTitle: { es: 'Hacer a Ronin grande otra vez', en: 'Make Ronin great again' },
+  missionLead: {
+    es: 'Todo lo que construimos —el juego, los NFT, los cofres y el token ANG— apunta a lo mismo: que Ronin vuelva a tener un juego divertido que traiga jugadores nuevos y una economía que se sostenga.',
+    en: 'Everything we build —the game, the NFTs, the chests and the ANG token— points at the same thing: Ronin getting a fun game again that brings in new players and an economy that sustains itself.',
+  },
+  pillars: [
+    {
+      b: { es: 'Diversión primero', en: 'Fun first' },
+      t: { es: 'Física real, partidas cortas y castillos que se derrumban en cadena. Si no es divertido, nada de lo demás importa.', en: 'Real physics, short matches and castles that collapse in chains. If it is not fun, nothing else matters.' },
+    },
+    {
+      b: { es: 'Economía sana', en: 'Healthy economy' },
+      t: { es: 'Emisión limitada, premios que nacen de jugar y sin asignación inicial. Una economía pensada para durar, no para extraer.', en: 'Limited issuance, rewards that come from playing and no initial allocation. An economy built to last, not to extract.' },
+    },
+    {
+      b: { es: 'Nuevos jugadores, cero fricción', en: 'New players, zero friction' },
+      t: { es: 'Se juega gratis en el navegador, sin wallet y sin instalar nada. La blockchain es opcional y vive afuera del juego.', en: 'Play free in the browser, no wallet and nothing to install. The blockchain is optional and lives outside the game.' },
+    },
+  ],
+  roadMission: {
+    es: 'Cada fase apunta a la misma meta: hacer a Ronin grande otra vez.',
+    en: 'Every phase points at the same goal: making Ronin great again.',
+  },
   h1a: { es: 'Construí. Apuntá.', en: 'Build. Aim.' },
   h1b: { es: 'Destruí en la blockchain.', en: 'Destroy on the blockchain.' },
   heroP: {
@@ -312,6 +344,7 @@ export default function App() {
             Angry Axies
           </a>
           <nav className="hidden items-center gap-5 text-sm text-slate-300 md:flex">
+            <a className="hover:text-white" href="#mision">{tx(UI.missionPill, lang)}</a>
             <a className="hover:text-white" href="#juego">{tx(UI.gameTitle, lang)}</a>
             <a className="hover:text-white" href="#roadmap">Roadmap</a>
             <a className="hover:text-white" href="#documento-nft-ang">NFT · ANG</a>
@@ -341,7 +374,9 @@ export default function App() {
                 {tx(UI.h1b, lang)}
               </span>
             </h1>
-            <p className="max-w-xl text-base leading-relaxed text-slate-300 md:text-lg">{tx(UI.heroP, lang)}</p>
+            <p className="text-lg font-extrabold tracking-tight text-teal-200 md:text-xl">{tx(UI.heroMission, lang)}</p>
+            <p className="max-w-xl text-base leading-relaxed text-slate-200 md:text-lg">{tx(UI.heroSub, lang)}</p>
+            <p className="max-w-xl text-sm leading-relaxed text-slate-400">{tx(UI.heroP, lang)}</p>
             <div className="flex flex-wrap gap-3">
               <a
                 href={GAME_URL}
@@ -391,6 +426,27 @@ export default function App() {
         </section>
         <p className="mt-4 text-sm text-slate-400">{tx(UI.honesty, lang)}</p>
 
+        {/* MISION */}
+        <section id="mision" className="relative mt-16 scroll-mt-24 overflow-hidden rounded-[1.35rem] border border-teal-500/30 bg-gradient-to-br from-zinc-900/95 via-[#0e1a1f] to-[#1f1a10] p-6 md:p-10">
+          <div className="pointer-events-none absolute -left-20 -top-20 h-72 w-72 rounded-full bg-orange-500/12 blur-[100px]" />
+          <div className="relative max-w-3xl space-y-3">
+            <span className="inline-flex items-center rounded-full border border-orange-500/25 bg-orange-500/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.22em] text-orange-100">
+              {tx(UI.missionPill, lang)}
+            </span>
+            <h2 className="text-3xl font-black tracking-tight text-white md:text-4xl">{tx(UI.missionTitle, lang)}</h2>
+            <p className="text-[15px] leading-relaxed text-slate-300 md:text-base">{tx(UI.missionLead, lang)}</p>
+          </div>
+          <div className="relative mt-8 grid gap-4 md:grid-cols-3">
+            {UI.pillars.map((p, i) => (
+              <div key={p.b.es} className={card}>
+                <div className="font-mono text-sm font-bold text-orange-300">0{i + 1}</div>
+                <div className="mt-1 text-base font-extrabold text-white">{tx(p.b, lang)}</div>
+                <p className="mt-2 text-[13px] leading-relaxed text-slate-300">{tx(p.t, lang)}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
         {/* JUEGO */}
         <section id="juego" className="mt-16 scroll-mt-24">
           <h2 className="text-2xl font-black tracking-tight text-white md:text-3xl">{tx(UI.gameTitle, lang)}</h2>
@@ -412,6 +468,7 @@ export default function App() {
         <section id="roadmap" className="mt-20 scroll-mt-24">
           <h2 className="text-2xl font-black tracking-tight text-white md:text-3xl">{tx(UI.roadTitle, lang)}</h2>
           <p className="mt-2 max-w-3xl text-slate-400">{tx(UI.roadSub, lang)}</p>
+          <p className="mt-2 max-w-3xl text-sm font-semibold text-teal-300">{tx(UI.roadMission, lang)}</p>
 
           <div className={`${card} mt-5`}>
             <div className="text-[11px] font-bold uppercase tracking-widest text-slate-400">{tx(UI.legend, lang)}</div>
@@ -692,6 +749,7 @@ export default function App() {
           <div className="mt-8 rounded-2xl border border-teal-400/25 bg-gradient-to-r from-teal-500/10 to-orange-500/10 p-6 text-center">
             <div className="text-xl font-black text-white md:text-2xl">{tx(UI.goal, lang)}</div>
             <p className="mt-2 text-sm text-slate-300">{tx(UI.goalP, lang)}</p>
+            <p className="mt-3 text-sm font-extrabold uppercase tracking-widest text-orange-300">{tx(UI.heroMission, lang)}</p>
           </div>
         </section>
 
