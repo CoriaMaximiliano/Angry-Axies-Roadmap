@@ -60,8 +60,8 @@ const UI = {
   networkV: { es: 'Ronin Mainnet · pruebas', en: 'Ronin Mainnet · testing' },
   updated: { es: 'Actualizado', en: 'Updated' },
   honesty: {
-    es: 'Cada hito muestra su estado real. Una etapa solo sube cuando hay evidencia: no por un test aislado ni por una intención.',
-    en: 'Every milestone shows its real state. A stage only moves up with evidence: not on an isolated test or on intent.',
+    es: 'El porcentaje es el estado interno de cada fase. Un hito se da por completo solo con implementación funcional y pruebas, no por un test aislado ni por una intención.',
+    en: 'The percentage is the internal state of each phase. A milestone counts as complete only with a working implementation and tests, not on an isolated test or on intent.',
   },
   gameTitle: { es: 'El juego', en: 'The game' },
   gameSub: { es: 'Seis formas de jugar, todas en horizontal, en PC y celular.', en: 'Six ways to play, all in landscape, on PC and mobile.' },
@@ -106,6 +106,11 @@ const UI = {
     es: 'Para cada rasgo cuenta el mejor valor entre todos tus NFT revelados. Poseer más NFT no multiplica el beneficio de gameplay; sí da más cupos de cofre.',
     en: 'For each trait the best value among all your revealed NFTs counts. Owning more NFTs does not multiply the gameplay benefit; it does give more chest slots.',
   },
+  s3ex: { es: 'Ejemplo de la regla del mejor valor', en: 'Best-value rule example' },
+  s3exp: {
+    es: 'NFT A → Daño ★★★★ · NFT B → Daño ★★★ · NFT C → Daño ★★★★★. Resultado aplicado: ★★★★★. Así todos tus NFT sirven, sin que la cantidad se vuelva ventaja acumulativa.',
+    en: 'NFT A → Damage ★★★★ · NFT B → Damage ★★★ · NFT C → Damage ★★★★★. Applied result: ★★★★★. Every NFT stays useful, without quantity becoming a cumulative advantage.',
+  },
   s3c: { es: 'Cofres: un cajón por tier', en: 'Chests: one drawer per tier' },
   s3cp: {
     es: 'Cada victoria da primero el cofre común y luego un cofre por cada tier distinto que tengas. Dos NFT del mismo tier dan un solo cofre de ese tier, pero suman cupos.',
@@ -136,7 +141,8 @@ const UI = {
   angCards: [
     { b: { es: 'Tope fijo: 100.000.000', en: 'Fixed cap: 100,000,000' }, t: { es: 'No existe emisión por encima del tope; el contrato lo impone.', en: 'No issuance above the cap; the contract enforces it.' } },
     { b: { es: 'Nace solo de los cofres', en: 'Born only from chests' }, t: { es: 'El único emisor es el contrato de reclamo. No hay premine ni emisión a tesorería.', en: 'The only minter is the claim contract. No premine and no issuance to treasury.' } },
-    { b: { es: 'Una transacción por cofre', en: 'One transaction per chest' }, t: { es: 'El servidor firma el resultado y vos enviás UN reclamo. Límites del contrato: 1.000 ANG por cofre y 100.000 por día.', en: 'The server signs the result and you send ONE claim. Contract limits: 1,000 ANG per chest and 100,000 per day.' } },
+    { b: { es: 'Una transacción por cofre', en: 'One transaction per chest' }, t: { es: 'El servidor firma el resultado y vos enviás UN reclamo. Límites actuales del contrato: 1.000 ANG por cofre y 100.000 por día por wallet; pueden ajustarse antes del lanzamiento si las pruebas económicas o de seguridad lo piden.', en: 'The server signs the result and you send ONE claim. Current contract limits: 1,000 ANG per chest and 100,000 per day per wallet; they may be adjusted before launch if economic or security testing requires it.' } },
+    { b: { es: 'Sin asignación inicial', en: 'No initial allocation' }, t: { es: 'No hay tokens reservados para tesorería, equipo, inversores, venta privada ni airdrop inicial.', en: 'No tokens reserved for treasury, team, investors, private sale or an initial airdrop.' } },
     { b: { es: 'Cobrar un cofre no paga impuesto', en: 'Collecting a chest is tax-free' }, t: { es: 'El premio llega íntegro; el gas lo paga quien reclama.', en: 'The prize arrives in full; whoever claims pays the gas.' } },
   ],
   taxTitle: { es: 'Diseño económico confirmado, aún sin implementar', en: 'Confirmed economic design, not yet implemented' },
@@ -154,6 +160,39 @@ const UI = {
   circuitP: {
     es: 'De la cuenta al premio, siete pasos. Cada paso de blockchain ocurre fuera del juego; el servidor comprueba la cadena y le entrega al juego el resultado.',
     en: 'From account to reward, seven steps. Every blockchain step happens outside the game; the server checks the chain and hands the result to the game.',
+  },
+  archLine: { es: 'Juego → Servidor → Portal web → Wallet → Blockchain', en: 'Game → Server → Web portal → Wallet → Blockchain' },
+  archP: {
+    es: 'El cliente del juego no ejecuta firmas, mint, reclamos directos, gestión de claves ni operaciones críticas on-chain. Esa separación mantiene el gameplay independiente de la blockchain y reduce la superficie de ataque.',
+    en: 'The game client does not run signatures, mint, direct claims, key management or critical on-chain operations. That separation keeps gameplay independent from the blockchain and shrinks the attack surface.',
+  },
+  nextTitle: { es: 'Próximos hitos', en: 'Next milestones' },
+  nextNow: { es: 'Prioridad crítica', en: 'Critical priority' },
+  nextNowL: [
+    { es: 'Finalizar la verificación de partidas.', en: 'Finish match verification.' },
+    { es: 'Completar las pruebas de punta a punta.', en: 'Complete the end-to-end tests.' },
+    { es: 'Aplicar por completo los atributos NFT en el servidor.', en: 'Fully apply NFT attributes on the server.' },
+    { es: 'Cerrar el anti-abuso y validar recompensas en condiciones reales.', en: 'Close anti-abuse and validate rewards under real conditions.' },
+    { es: 'Completar las builds de Android e iPhone.', en: 'Complete the Android and iPhone builds.' },
+    { es: 'Auditoría de contratos y lanzamiento de la colección.', en: 'Contract audit and collection launch.' },
+  ],
+  nextLater: { es: 'Después del lanzamiento', en: 'After launch' },
+  nextLaterL: [
+    { es: 'Mercado interno.', en: 'In-game market.' },
+    { es: 'Torneos y VIP.', en: 'Tournaments and VIP.' },
+    { es: 'Economía secundaria.', en: 'Secondary economy.' },
+    { es: 'Subastas con ANG.', en: 'ANG auctions.' },
+    { es: 'Temporadas.', en: 'Seasons.' },
+    { es: 'Liquidez de ANG y expansión del ecosistema.', en: 'ANG liquidity and ecosystem expansion.' },
+  ],
+  ecoNote: {
+    es: 'Estas funciones dependen del comportamiento real de la economía después del lanzamiento y no son compromisos de implementación.',
+    en: 'These features depend on how the economy actually behaves after launch and are not implementation commitments.',
+  },
+  goal: { es: 'Jugar → competir → ganar → coleccionar → intercambiar', en: 'Play → compete → win → collect → trade' },
+  goalP: {
+    es: 'La prioridad es el juego. La blockchain es la infraestructura: una capa externa de propiedad, recompensas y economía.',
+    en: 'The game comes first. The blockchain is infrastructure: an external layer of ownership, rewards and economy.',
   },
   safeTitle: { es: 'Qué nunca hace el juego', en: 'What the game never does' },
   safe: [
@@ -415,6 +454,7 @@ export default function App() {
                         </li>
                       ))}
                     </ul>
+                    {ch.id === 6 && <p className="mt-3 text-xs italic text-slate-400">{tx(UI.ecoNote, lang)}</p>}
                   </div>
                 </article>
               );
@@ -498,6 +538,10 @@ export default function App() {
                     <p className="mt-2 text-[13px] leading-relaxed text-slate-300">{tx(b, lang)}</p>
                   </div>
                 ))}
+              </div>
+              <div className="rounded-2xl border border-amber-400/30 bg-amber-500/5 p-4">
+                <div className="text-sm font-extrabold text-amber-100">{tx(UI.s3ex, lang)}</div>
+                <p className="mt-2 text-[13px] leading-relaxed text-slate-300">{tx(UI.s3exp, lang)}</p>
               </div>
             </div>
 
@@ -592,6 +636,10 @@ export default function App() {
         <section id="recorrido" className="mt-20 scroll-mt-24">
           <h2 className="text-2xl font-black tracking-tight text-white md:text-3xl">{tx(UI.circuitTitle, lang)}</h2>
           <p className="mt-2 max-w-3xl text-slate-400">{tx(UI.circuitP, lang)}</p>
+          <div className="mt-6 rounded-2xl border border-teal-400/30 bg-teal-500/5 p-4">
+            <div className="text-center font-mono text-sm font-bold text-teal-100 md:text-base">{tx(UI.archLine, lang)}</div>
+            <p className="mt-2 text-center text-[13px] leading-relaxed text-slate-300">{tx(UI.archP, lang)}</p>
+          </div>
           <ol className="mt-6 grid gap-4 md:grid-cols-2">
             {CIRCUIT.map((s) => (
               <li key={s.n} className={`${card} flex gap-4`}>
@@ -622,6 +670,29 @@ export default function App() {
                 <p className="mt-2 text-[13px] leading-relaxed text-slate-300">{tx(s.t, lang)}</p>
               </div>
             ))}
+          </div>
+        </section>
+
+        {/* PROXIMOS HITOS */}
+        <section className="mt-20">
+          <h2 className="text-2xl font-black tracking-tight text-white md:text-3xl">{tx(UI.nextTitle, lang)}</h2>
+          <div className="mt-6 grid gap-4 md:grid-cols-2">
+            <div className={`${card} border-rose-400/30`}>
+              <div className="text-sm font-extrabold text-rose-200">{tx(UI.nextNow, lang)}</div>
+              <ol className="mt-3 list-decimal space-y-1.5 pl-5 text-[13px] text-slate-300">
+                {UI.nextNowL.map((u) => (<li key={u.es}>{tx(u, lang)}</li>))}
+              </ol>
+            </div>
+            <div className={`${card} border-amber-400/30`}>
+              <div className="text-sm font-extrabold text-amber-200">{tx(UI.nextLater, lang)}</div>
+              <ol className="mt-3 list-decimal space-y-1.5 pl-5 text-[13px] text-slate-300">
+                {UI.nextLaterL.map((u) => (<li key={u.es}>{tx(u, lang)}</li>))}
+              </ol>
+            </div>
+          </div>
+          <div className="mt-8 rounded-2xl border border-teal-400/25 bg-gradient-to-r from-teal-500/10 to-orange-500/10 p-6 text-center">
+            <div className="text-xl font-black text-white md:text-2xl">{tx(UI.goal, lang)}</div>
+            <p className="mt-2 text-sm text-slate-300">{tx(UI.goalP, lang)}</p>
           </div>
         </section>
 

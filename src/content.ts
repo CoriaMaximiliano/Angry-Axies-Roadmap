@@ -121,7 +121,10 @@ export const CHAPTERS: Chapter[] = [
       { label: { es: 'Partida ganada → cofre asignado por el servidor', en: 'Won match → chest assigned by the server' }, state: 'testnet' },
       { label: { es: 'Reclamo del cofre y cobro de ANG en cadena', en: 'Chest claim and on-chain ANG payout' }, state: 'testnet' },
       { label: { es: 'Volver al juego y ver el premio una sola vez', en: 'Return to the game and see the reward exactly once' }, state: 'building' },
-      { label: { es: 'Casos de fallo: rechazo, red incorrecta, respuesta perdida, duplicados', en: 'Failure cases: rejection, wrong network, lost response, duplicates' }, state: 'building' },
+      { label: { es: 'Rechazo de firmas inválidas o vencidas', en: 'Rejection of invalid or expired signatures' }, state: 'building' },
+      { label: { es: 'Detección de red o cuenta incorrectas', en: 'Detection of wrong network or account' }, state: 'building' },
+      { label: { es: 'Protección contra reclamos duplicados y repetidos (replay)', en: 'Protection against duplicate and replayed claims' }, state: 'building' },
+      { label: { es: 'Recuperación ante respuesta perdida o estado inconsistente', en: 'Recovery from a lost response or inconsistent state' }, state: 'building' },
       { label: { es: 'Recorrido completo con una cuenta real, de ida y vuelta', en: 'Full round trip with a real account' }, state: 'building' },
     ],
   },
@@ -136,9 +139,12 @@ export const CHAPTERS: Chapter[] = [
     tone: 'emerald',
     milestones: [
       { label: { es: 'Progreso y ranking ordinarios (marcados como no verificados)', en: 'Ordinary progress and ranking (flagged as unverified)' }, state: 'live', note: { es: 'Hoy las partidas ordinarias llevan verified = false, a propósito.', en: 'Today ordinary matches carry verified = false, on purpose.' } },
-      { label: { es: 'Núcleo de simulación, journals y recuperación en SQLite', en: 'Simulation kernel, journals and SQLite recovery' }, state: 'building' },
-      { label: { es: 'Cobertura por modo: Historia, Solo, PvP y bots', en: 'Coverage per mode: Story, Solo, PvP and bots' }, state: 'building' },
-      { label: { es: 'Recuperación tras cortes y reinicios sin perder premios', en: 'Recovery after drops and restarts without losing rewards' }, state: 'building' },
+      { label: { es: 'Motor de simulación de física y registro journalizado en SQLite', en: 'Physics simulation engine and journaled SQLite log' }, state: 'building' },
+      { label: { es: 'Verificación de Historia', en: 'Story verification' }, state: 'building' },
+      { label: { es: 'Verificación de PvP', en: 'PvP verification' }, state: 'building' },
+      { label: { es: 'Verificación de Solo', en: 'Solo verification' }, state: 'building' },
+      { label: { es: 'Verificación de partidas contra bots', en: 'Verification of bot matches' }, state: 'building' },
+      { label: { es: 'Recuperación ante desconexiones y reinicios sin perder premios', en: 'Recovery from disconnects and restarts without losing rewards' }, state: 'building' },
       { label: { es: 'Rendimiento de los niveles más pesados dentro del presupuesto', en: 'Performance of the heaviest levels within budget' }, state: 'building' },
       { label: { es: 'Habilitar recompensas NFT solo con partida verificada', en: 'Enable NFT rewards only for verified matches' }, state: 'planned' },
     ],
@@ -251,12 +257,14 @@ export const ANG_ROLL: { odds: string; range: L }[] = [
 export type Step = { n: number; title: L; text: L; where: L; state: State };
 export const CIRCUIT: Step[] = [
   { n: 1, title: { es: 'Cuenta y wallet', en: 'Account and wallet' }, text: { es: 'Vinculás tu cuenta del juego con tu wallet de Ronin.', en: 'You link your game account with your Ronin wallet.' }, where: { es: 'Discord / página externa', en: 'Discord / external page' }, state: 'building' },
-  { n: 2, title: { es: 'Mint', en: 'Mint' }, text: { es: 'Elegís tier y comprás tu NFT; los ocho rasgos quedan ocultos.', en: 'You pick a tier and buy your NFT; the eight traits stay hidden.' }, where: { es: 'Página de mint', en: 'Mint page' }, state: 'testnet' },
-  { n: 3, title: { es: 'Revelado', en: 'Reveal' }, text: { es: 'Un número aleatorio verificable (VRF) define los rasgos; no se pueden deducir del número de serie.', en: 'A verifiable random number (VRF) sets the traits; they cannot be deduced from the serial number.' }, where: { es: 'Página de mint', en: 'Mint page' }, state: 'testnet' },
-  { n: 4, title: { es: 'Beneficios', en: 'Benefits' }, text: { es: 'El servidor lee tu inventario finalizado y aplica la estructura y los rasgos en tus partidas.', en: 'The server reads your finalized inventory and applies the structure and traits to your matches.' }, where: { es: 'Servidor → juego', en: 'Server → game' }, state: 'building' },
-  { n: 5, title: { es: 'Partida', en: 'Match' }, text: { es: 'Ganás una partida; el servidor la guarda y asigna cofres.', en: 'You win a match; the server records it and assigns chests.' }, where: { es: 'Juego', en: 'Game' }, state: 'testnet' },
-  { n: 6, title: { es: 'Cofre', en: 'Chest' }, text: { es: 'Tocás el cofre: se abre la página externa, firmás UNA transacción y cobrás.', en: 'You tap the chest: the external page opens, you sign ONE transaction and collect.' }, where: { es: 'Página de cofres', en: 'Chests page' }, state: 'testnet' },
-  { n: 7, title: { es: 'Premio', en: 'Reward' }, text: { es: 'Volvés al juego: ANG, oro y materiales ya están en tu cuenta, una sola vez.', en: 'You return to the game: ANG, gold and materials are in your account, once only.' }, where: { es: 'Servidor → juego', en: 'Server → game' }, state: 'building' },
+  { n: 2, title: { es: 'Mint externo', en: 'External mint' }, text: { es: 'Elegís tier y comprás tu NFT; los ocho rasgos quedan ocultos.', en: 'You pick a tier and buy your NFT; the eight traits stay hidden.' }, where: { es: 'Página de mint', en: 'Mint page' }, state: 'testnet' },
+  { n: 3, title: { es: 'VRF y revelado', en: 'VRF and reveal' }, text: { es: 'Un número aleatorio verificable define los rasgos; no se pueden deducir del número de serie.', en: 'A verifiable random number sets the traits; they cannot be deduced from the serial number.' }, where: { es: 'Página de mint', en: 'Mint page' }, state: 'testnet' },
+  { n: 4, title: { es: 'Atributos → servidor', en: 'Attributes → server' }, text: { es: 'El servidor lee tu inventario finalizado y aplica la estructura y el mejor valor de cada rasgo.', en: 'The server reads your finalized inventory and applies the structure and the best value of each trait.' }, where: { es: 'Servidor → juego', en: 'Server → game' }, state: 'building' },
+  { n: 5, title: { es: 'Partida', en: 'Match' }, text: { es: 'Jugás y ganás; el servidor guarda la partida.', en: 'You play and win; the server records the match.' }, where: { es: 'Juego', en: 'Game' }, state: 'testnet' },
+  { n: 6, title: { es: 'Verificación', en: 'Verification' }, text: { es: 'El servidor comprueba que la partida sea válida antes de dar recompensas NFT. Hoy las partidas ordinarias llevan verified = false.', en: 'The server checks the match is valid before granting NFT rewards. Today ordinary matches carry verified = false.' }, where: { es: 'Servidor', en: 'Server' }, state: 'building' },
+  { n: 7, title: { es: 'Cofre y premio', en: 'Chest and reward' }, text: { es: 'El servidor asigna los cofres y sortea el premio al pedir la firma; vos no elegís ni repetís el sorteo.', en: 'The server assigns the chests and rolls the prize when the signature is requested; you neither choose nor re-roll.' }, where: { es: 'Servidor', en: 'Server' }, state: 'testnet' },
+  { n: 8, title: { es: 'Claim externo (EIP-712)', en: 'External claim (EIP-712)' }, text: { es: 'Tocás el cofre: se abre la página externa, firmás UNA transacción y cobrás.', en: 'You tap the chest: the external page opens, you sign ONE transaction and collect.' }, where: { es: 'Página de cofres', en: 'Chests page' }, state: 'testnet' },
+  { n: 9, title: { es: 'Validación on-chain y vuelta', en: 'On-chain validation and return' }, text: { es: 'El servidor comprueba la cadena y el juego te muestra ANG, oro y materiales una sola vez.', en: 'The server checks the chain and the game shows you ANG, gold and materials exactly once.' }, where: { es: 'Servidor → juego', en: 'Server → game' }, state: 'building' },
 ];
 
 export const LEGEND: State[] = ['planned', 'design', 'building', 'testnet', 'live', 'done'];
