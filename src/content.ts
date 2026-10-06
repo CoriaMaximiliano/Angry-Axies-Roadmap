@@ -101,7 +101,7 @@ export const CHAPTERS: Chapter[] = [
       { label: { es: 'Premios del juego dentro del cofre NFT (oro, madera, piedra…) × tier', en: 'In-game rewards inside the NFT chest (gold, wood, stone…) × tier' }, state: 'testnet' },
       { label: { es: 'Página externa de cofres con ceremonia animada', en: 'External chests page with animated ceremony' }, state: 'testnet' },
       { label: { es: 'Registro en Proof of Distribution de Ronin', en: 'Registration in Ronin Proof of Distribution' }, state: 'live', note: { es: 'Contratos de reclamo y colección registrados en el perfil del builder.', en: 'Claim and collection contracts registered under the builder profile.' } },
-      { label: { es: 'Saldo ANG en el menú del juego', en: 'ANG balance in the game menu' }, state: 'building', note: { es: 'Implementado; falta publicarlo y probarlo con wallet real.', en: 'Implemented; publishing and real-wallet test pending.' } },
+      { label: { es: 'Saldo ANG en el menú del juego', en: 'ANG balance in the game menu' }, state: 'testnet', note: { es: 'Probado; a la espera del token oficial, terminadas las pruebas.', en: 'Tested; waiting for the official token once testing is finished.' } },
       { label: { es: 'Anti-abuso diario del lado del servidor', en: 'Server-side daily anti-abuse' }, state: 'building' },
       { label: { es: 'Logo de ANG en Ronin Wallet y explorador', en: 'ANG logo in Ronin Wallet and explorer' }, state: 'planned' },
     ],
